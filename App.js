@@ -18,6 +18,8 @@ import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import NotificationLogScreen from './screens/NotificationLogScreen';
 
+// Providers
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -31,25 +33,25 @@ function TabNavigator() {
       initialRouteName="Home"
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          headerShown: true,
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
-          ),
-        }}/>
-
-      <Tab.Screen
         name="Profile"
+        component={ProfileScreen}
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-circle-outline" size={size} color={color} />
           ),
+        }}/>
+
+      <Tab.Screen
+        name="Home"
+        options={{
+          headerShown: true,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
         }}
         initialParams={{}}
-        component={ProfileScreen}>
+        component={HomeScreen}>
       </Tab.Screen>
 
       <Tab.Screen

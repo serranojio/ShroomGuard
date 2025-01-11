@@ -1,10 +1,19 @@
-import { View, Text, StyleSheet } from "react-native"
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from "react-native"
+
+// For inference results
+import { useInferenceResults } from '../contexts/InferenceResultsContext';
+
+// Importing Home Screen Components
+import Header from '../HomeScreenComponents/Header';
 
 function HomeScreen(){
     return (
-        <View style={styles.homeContainer}>
-            <Text>Home Screen</Text>
-        </View>
+        <ScrollView>
+            <View>
+                <Header />
+            </View>
+        </ScrollView>
     )
 }
 
