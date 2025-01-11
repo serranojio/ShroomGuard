@@ -1,12 +1,93 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+// Icons
+import { Ionicons } from 'react-native-vector-icons';
+
+// Bottom Tab Navigator
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+
+// Stack Navigator for Login/Signup
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// Importing Screens
+import HomeScreen from './screens/HomeScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import LoginScreen from './screens/LoginScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import NotificationLogScreen from './screens/NotificationLogScreen';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function TabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#15412D',
+        tabBarInactiveTintColor: 'gray',
+      }}
+      initialRouteName="Home"
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: true,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}/>
+
+      <Tab.Screen
+        name="Profile"
+        options={{
+          headerShown: true,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-circle-outline" size={size} color={color} />
+          ),
+        }}
+        initialParams={{}}
+        component={ProfileScreen}>
+      </Tab.Screen>
+
+      <Tab.Screen
+         name="Notification Logs"
+         component={NotificationLogScreen}
+         options={{
+          headerShown: true,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="notifications-circle-outline" size={size} color={color} />
+          ),
+         }}>
+      </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
+
+function MainStackNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen 
+        name="Login"
+        component={LoginScreen}>
+      </Stack.Screen>
+
+      <Stack.Screen 
+        name="SignUp"
+        component={SignUpScreen}>
+
+      </Stack.Screen>
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
   );
 }
 

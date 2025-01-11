@@ -15,3 +15,5 @@ const styles = StyleSheet.create({
         paddingTop: 15,
     },
 })
+
+export default HomeScreen;
